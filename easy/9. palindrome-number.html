@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        var isPalindrome = function (x) {
+            if (x < 0) return false;
+
+            let num = x;
+            let power = Math.floor(Math.log10(x));
+            let reversedNum = 0;
+
+            while (num >= 10) {
+                const remainder = num % 10;
+                const value = remainder * 10 ** power--;
+
+                reversedNum += value;
+                num = Math.floor(num / 10)
+            }
+
+            reversedNum += num;
+
+            return reversedNum === x;
+        };
+
+        console.log(isPalindrome(234132))
+    </script>
+</body>
+
+</html>

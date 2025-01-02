@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        const longestCommonPrefix = (strs) => {
+            if (strs.length === 1) return strs[0];
+
+            let commonPrefix = strs[0];
+
+            for (let i = 1; i < strs.length; i++) {
+                let currentIndex = 0;
+                let currentPrefix = "";
+
+
+                while (currentIndex < strs[i].length) {
+                    const currentChar = strs[i][currentIndex];
+
+                    if (currentChar !== commonPrefix[currentIndex]) return currentPrefix;
+                    else currentPrefix += currentChar;
+
+                    currentIndex++;
+                }
+
+                commonPrefix = currentPrefix;
+            }
+
+            return commonPrefix;
+        };
+
+        const longestPrefix = longestCommonPrefix(["flower", "flow", "flight"]);
+
+        console.log(longestPrefix)
+    </script>
+</body>
+
+</html>
