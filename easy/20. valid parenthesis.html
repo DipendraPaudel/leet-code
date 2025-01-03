@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        const obj = {
+            '(': ')',
+            '{': '}',
+            '[': ']',
+        }
+
+        const reverseObj = {
+            ')': '(',
+            '}': '{',
+            ']': '[',
+        }
+
+        var isValid = function (s) {
+            const brackets = [];
+
+            for (let i = 0; i < s.length; i++) {
+                const currentChar = s[i];
+
+                if (obj.hasOwnProperty(currentChar)) brackets.push(currentChar);
+
+                else if (reverseObj.hasOwnProperty(currentChar)) {
+                    if (brackets[brackets.length - 1] !== reverseObj[currentChar]) return false;
+                    else brackets.pop();
+                }
+            }
+
+            return brackets.length === 0;
+
+        };
+
+        console.log(isValid("(){}{"))
+    </script>
+</body>
+
+</html>
