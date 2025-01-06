@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+
+        var lengthOfLongestSubstring = function (s) {
+            if (s.length <= 1) return s.length;
+
+            let longestSubString = 0;
+            let hashObj = {};
+
+            let leftPointer = 0;
+            let rightPointer = 0;
+
+            for (let i = 0; i < s.length; i++) {
+                const char = s[i];
+
+                if (hashObj[char] !== undefined && hashObj[char] >= leftPointer) {
+                    longestSubString = Math.max(longestSubString, rightPointer - leftPointer + 1);
+                    leftPointer = hashObj[char] + 1;
+                }
+
+                hashObj[char] = i;
+                rightPointer = i;
+            }
+
+            longestSubString = Math.max(longestSubString, rightPointer - leftPointer + 1)
+
+            return longestSubString;
+        };
+
+        console.log(lengthOfLongestSubstring("pwwkew"))
+    </script>
+</body>
+
+</html>
