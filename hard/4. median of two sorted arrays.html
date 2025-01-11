@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+
+        const merge = (arr1, arr2) => {
+            let l1 = 0;
+            let l2 = 0;
+
+            const resultArr = [];
+
+            while (l1 < arr1.length && l2 < arr2.length) {
+                if (arr1[l1] <= arr2[l2]) {
+                    resultArr.push(arr1[l1]);
+                    l1++;
+                }
+                else {
+                    resultArr.push(arr2[l2]);
+                    l2++;
+                }
+            }
+
+            if (l1 < arr1.length) resultArr.push(...arr1.slice(l1))
+            if (l2 < arr2.length) resultArr.push(...arr2.slice(l2))
+
+            return resultArr;
+        }
+
+        var findMedianSortedArrays = function (nums1, nums2) {
+            const mergedArr = merge(nums1, nums2);
+            const lengthOfMergedArr = mergedArr.length;
+
+            if (lengthOfMergedArr % 2 === 0) {
+                const leftValue = mergedArr[lengthOfMergedArr / 2 - 1];
+                const rightValue = mergedArr[lengthOfMergedArr / 2];
+
+                return (leftValue + rightValue) / 2;
+            }
+            else {
+                // since index starts from zero subtract by 1
+                const mid = Math.floor(lengthOfMergedArr / 2);
+
+                return mergedArr[mid];
+            }
+
+        };
+
+        console.log(findMedianSortedArrays([2, 2, 4, 4], [2, 2, 2, 4, 4]))
+    </script>
+</body>
+
+</html>
