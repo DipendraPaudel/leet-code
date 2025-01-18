@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var lengthOfLastWord = function (s) {
+            if (s.trim().length === 0) return 0;
+
+            let lastIndex = s.length - 1;
+            let length = 0;
+
+            while (true) {
+                if (lastIndex < 0) break;
+
+                if (s[lastIndex] !== " ") length++;
+                else if ((s[lastIndex] === " " && length)) break;
+
+                lastIndex--;
+            }
+
+            return length;
+        };
+
+        console.log(lengthOfLastWord('a'))
+    </script>
+</body>
+
+</html>
