@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        var plusOne = function (digits) {
+            for (let i = digits.length - 1; i >= -1; i--) {
+                if (i === -1) {
+                    digits.unshift(1);
+                    break;
+                }
+
+                const currentDigit = digits[i] + 1;
+
+                if (currentDigit <= 9) {
+                    digits[i] = currentDigit;
+                    break;
+                }
+
+                else digits[i] = 0;
+
+            }
+
+            return digits;
+        };
+
+        console.log(plusOne([9]))
+    </script>
+</body>
+
+</html>
