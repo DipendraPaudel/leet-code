@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        var removeElement = function (nums, val) {
+            let occurenceCount = 0
+
+            nums = nums.filter((num) => {
+                if (num !== val) return true;
+
+                occurenceCount++
+                return false;
+            });
+
+
+            nums.push(...Array.from({ length: occurenceCount }).fill(val));
+
+            return nums.length - occurenceCount;
+        };
+
+        console.log(removeElement([3, 2, 2, 3], 3))
+    </script>
+</body>
+
+</html>

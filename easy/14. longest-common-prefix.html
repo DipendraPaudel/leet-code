@@ -10,28 +10,19 @@
 <body>
 
     <script>
-        const longestCommonPrefix = (strs) => {
-            if (strs.length === 1) return strs[0];
+        var longestCommonPrefix = function (strs) {
+            if (!strs.length) return ""; // If the array is empty, return an empty string.
 
-            let commonPrefix = strs[0];
+            let result = strs[0]; // Start with the first string as the base prefix.
 
             for (let i = 1; i < strs.length; i++) {
-                let currentIndex = 0;
-                let currentPrefix = "";
-
-                while (currentIndex < strs[i].length) {
-                    const currentChar = strs[i][currentIndex];
-
-                    if (currentChar !== commonPrefix[currentIndex]) return currentPrefix;
-                    else currentPrefix += currentChar;
-
-                    currentIndex++;
+                // Trim the result until it's a prefix of the current string.
+                while (strs[i].indexOf(result) !== 0) {
+                    result = result.slice(0, -1); // Remove the last character.
+                    if (!result) return ""; // If the prefix becomes empty, no common prefix exists.
                 }
-
-                commonPrefix = currentPrefix;
             }
-
-            return commonPrefix;
+            return result;
         };
 
         const longestPrefix = longestCommonPrefix(["flower", "flow", "flight"]);
