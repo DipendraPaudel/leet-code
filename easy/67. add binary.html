@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var addBinary = function (a, b) {
+            let finalBinary = "";
+
+            let l1 = a.length - 1;
+            let l2 = b.length - 1;
+
+            let extra = 0;
+
+            while (l1 >= 0 || l2 >= 0) {
+                const num1 = Number(a[l1]) || 0;
+                const num2 = Number(b[l2]) || 0;
+
+                // convert the sum to binary
+                const sum = (num1 + num2 + extra).toString(2);
+
+                finalBinary = sum[sum.length - 1] + finalBinary;
+                extra = Number(sum[sum.length - 2]) || 0;
+
+                l1--;
+                l2--;
+            }
+
+            if (extra) finalBinary = extra.toString() + finalBinary;
+
+            return finalBinary;
+        };
+
+        console.log(addBinary("11", "111"))
+    </script>
+</body>
+
+</html>
