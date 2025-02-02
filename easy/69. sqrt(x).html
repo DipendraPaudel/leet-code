@@ -8,65 +8,30 @@
 
   <body>
     <script>
-      const getBuckets = (stringNum) => {
-        const buckets = [];
-
-        let startingIndex = 1;
-
-        if (stringNum.length % 2 === 0) {
-          buckets.push(stringNum.slice(0, 2));
-          startingIndex = 2;
-        } else buckets.push(stringNum[0]);
-
-        for (let i = startingIndex; i < stringNum.length; i = i + 2) {
-          buckets.push(stringNum.slice(i, i + 2));
-        }
-
-        return buckets;
-      };
-
-      const getCloseSquareRoot = (num, multiplyValue = 0) => {
-        let currentIndex = 0;
-
-        for (let i = 0; i < 10; i++) {
-          const multiplication = Number(String(multiplyValue) + String(i)) * i;
-          console.log(multiplication, multiplyValue + String(i));
-          if (num >= multiplication) currentIndex++;
-          else break;
-        }
-
-        return currentIndex > 0 ? currentIndex - 1 : 0;
-      };
-
       var mySqrt = function (x) {
-        x = x.toString();
-        let result = "";
+        if ([0, 1].includes(x)) return x;
 
-        const buckets = getBuckets(x);
-        let finalSquareRoot = "";
+        let leftValue = 1;
+        let rightValue = Math.floor(x / 2);
 
-        let remainder = 0;
+        while (leftValue <= rightValue) {
+          const midValue = Math.floor((leftValue + rightValue) / 2);
+          const squareOfMidValue = midValue ** 2;
 
-        for (let i = 0; i < buckets.length; i++) {
-          const passingNumber = Number(buckets[i]) + remainder * 100;
-          const doubleOfPreviousResult = finalSquareRoot * 2;
-
-          const squareRoot = getCloseSquareRoot(
-            passingNumber,
-            doubleOfPreviousResult
-          );
-
-          finalSquareRoot += squareRoot;
-
-          remainder =
-            passingNumber -
-            (String(doubleOfPreviousResult) + String(squareRoot)) * squareRoot;
+          if (squareOfMidValue === x) return midValue;
+          else if (squareOfMidValue < x) {
+            leftValue = midValue + 1;
+          } else {
+            rightValue = midValue - 1;
+          }
         }
 
-        return Number(finalSquareRoot);
+        if (leftValue ** 2 < x) return leftValue;
+
+        return rightValue;
       };
 
-      console.log(mySqrt(2147395599));
+      console.log(mySqrt(3));
     </script>
   </body>
 </html>
