@@ -7,19 +7,31 @@
   </head>
   <body>
     <script>
+      //   var climbStairs = function (n) {
+      //     if ([1, 2].includes(n)) return n;
+
+      //     let prev1 = 1;
+      //     let prev2 = 2;
+
+      //     for (let i = 3; i < n; i++) {
+      //       let tempPrev1 = prev1;
+      //       prev1 = prev2;
+      //       prev2 = prev2 + tempPrev1;
+      //     }
+
+      //     return prev1 + prev2;
+      //   };
+
       var climbStairs = function (n) {
-        if ([1, 2].includes(n)) return n;
+        let possibleClimb = [];
+        possibleClimb[1] = 1;
+        possibleClimb[2] = 2;
 
-        let prev1 = 1;
-        let prev2 = 2;
-
-        for (let i = 3; i < n; i++) {
-          let tempPrev1 = prev1;
-          prev1 = prev2;
-          prev2 = prev2 + tempPrev1;
+        for (let i = 3; i <= n; i++) {
+          possibleClimb[i] = possibleClimb[i - 1] + possibleClimb[i - 2];
         }
 
-        return prev1 + prev2;
+        return possibleClimb[n];
       };
 
       console.log(climbStairs(8));
